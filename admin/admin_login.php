@@ -1,6 +1,6 @@
 <?php 
 
-@include '../../config/connect.php';
+@include '../config/connect.php';
 
 session_start();
 
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
    if($select_admin->rowCount() > 0){
       $fetch_admin_id = $select_admin->fetch(PDO::FETCH_ASSOC);
       $_SESSION['admin_id'] = $fetch_admin_id['id'];
-      header('location:../dashboard.php');
+      header('location:dashboard.php');
    }else{
       $message[] = 'incorrect username or password!';
    }
@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/admin_style.css">
 </head>
 <body style="padding-left: 0 !important;">
 
