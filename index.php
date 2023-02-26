@@ -33,10 +33,77 @@ if(isset($_SESSION['user_id'])){
 
    <?php include 'components/header.php'; ?>
    
-   <section class="home-grid">
+   <section class="show-posts">
+
+      <h1 class="heading">Cars available for rent</h1>
+      <br/>
+
       <div class="box-container">
-         <div class="box"></div>
+
+         <?php
+            $select_vehicles = $conn->prepare("SELECT * FROM `vehicles`");
+            $select_vehicles->execute();
+            if($select_vehicles->rowCount() > 0){
+               while($fetch_vehicles = $select_vehicles->fetch(PDO::FETCH_ASSOC)){
+                  $vehicle_id = $fetch_vehicles['vehicle_id'];
+
+         ?>
+         <form method="post" class="box">
+            <input type="hidden" name="vehicle_id" value="<?= $vehicle_id; ?>">
+   
+            <div class="title"><?= $fetch_vehicles['vehicle_model']; ?></div>
+            <div class="posts-content"><?= $fetch_vehicles['vehicle_number']; ?></div>
+            <div class="icons">
+               <div class="seating">Seating: <?= $fetch_vehicles['seating_capacity']; ?></div>
+               <br>
+               <div class="prices">Rent per day: &nbsp; <span>₹ <?= $fetch_vehicles['rent']; ?></span></div>
+            </div>
+
+            <br>
+
+            <?php
+               $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+               $select_profile->execute([$user_id]);
+               if($select_profile->rowCount() > 0){
+                  $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+                  
+            ?>
+
+             <div class="options">
+               <select name="days" class="box" required>
+               <option value="" selected disabled>Select no. of days* </option>
+               <option value="1">One</option>
+               <option value="2">Two</option>
+               <option value="3">Three</option>
+               <option value="4">Four</option>
+               <option value="5">More than 5 days</option>
+               </select>
+
+               <p>Start Date:</p>
+               <input type="date" id="start-date" class="box" name="start_date">
+             </div>
+            
+            <?php
+            }else{
+            ?>
+               <div></div>
+            <?php
+            }
+            ?>
+            <br>
+            
+            <a href="read_post.php?post_id=<?= $vehicle_id; ?>" class="btn">Book Car</a>
+            
+         </form>
+         <?php
+               }
+            }else{
+               echo '<p class="empty">no cards added yet! <a href="/admin/add_vehicle.php" class="btn" style="margin-top:1.5rem;">add vehicle</a></p>';
+            }
+         ?>
+
       </div>
+
    </section>
   
    <?php include 'components/footer.php'; ?>

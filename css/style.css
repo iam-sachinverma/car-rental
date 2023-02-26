@@ -302,6 +302,72 @@ section {
   color: var(--white);
 }
 
+/*  Show Vehicle */
+
+.show-posts .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 33rem);
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.show-posts .box-container .box {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  padding: 1rem;
+  overflow: hidden;
+  margin: 10px 0 10px 0;
+}
+
+.show-posts .box-container .box .title {
+  font-size: 2.5rem;
+  color: var(--black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+  min-width: 100%;
+}
+
+.show-posts .box-container .box .posts-content {
+  font-size: 1.7rem;
+  color: var(--light-color);
+  line-height: 1.5;
+  padding: 1rem 0;
+}
+
+.show-posts .box-container .box .posts-content::after {
+  content: "...";
+}
+
+.show-posts .box-container .box .icons {
+  margin: 0.5rem 0;
+}
+
+.show-posts .box-container .box .icons div {
+  font-size: 1.8rem;
+}
+
+.show-posts .box-container .box .icons div span {
+  color: var(--main-color);
+}
+
+.show-posts .box-container .box .icons div i {
+  color: var(--light-color);
+  margin-right: 0.5rem;
+}
+
+.show-posts .box-container .box .options p {
+  color: var(--light-color);
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+/*  */
+
 .posts-container .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(33rem, 1fr));
