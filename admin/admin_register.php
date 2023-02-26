@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
     $user_type = $_POST['user_type'];
     $user_type = filter_var($user_type, FILTER_SANITIZE_STRING);
  
-    $select_user = $conn->prepare("SELECT * FROM `user` WHERE email = ?");
+    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
     $select_user->execute([$email]);
     $row = $select_user->fetch(PDO::FETCH_ASSOC);
     
@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
           $insert_admin->execute([$name, $email, $cpass, $user_type]);
           $message[] = 'Registered Successfully !';
 
-          $select_user = $conn->prepare("SELECT * FROM `user` WHERE email = ? AND password = ?");
+          $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
           $select_user->execute([$email, $pass]);
           $row = $select_user->fetch(PDO::FETCH_ASSOC);
 

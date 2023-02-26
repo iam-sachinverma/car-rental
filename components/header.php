@@ -4,9 +4,9 @@
 
       <a href="home.php" class="logo">Cart Rent</a>
 
-      <div class="icons">
-         <a href="#" id="login" class="fas fa-user">Login</a>
-      </div>
+      <div class="flex-btn">
+         <a href="login.php" class="option-btn">login</a>
+      </div> 
 
    </section>
 

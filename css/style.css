@@ -191,19 +191,6 @@ section {
   color: var(--black);
 }
 
-.header .flex .icons div {
-  font-size: 2rem;
-  color: var(--black);
-  cursor: pointer;
-  margin-left: 0.5rem;
-  text-align: center;
-}
-
-.header .flex .icons div:hover {
-  background-color: var(--black);
-  color: var(--white);
-}
-
 @keyframes fadeIn {
   0% {
     transform: translateY(1rem);

@@ -30,6 +30,7 @@ if(isset($_SESSION['user_id'])){
 <body>
 
    <?php include 'components/header.php'; ?>
+   
   
    <?php include 'components/footer.php'; ?>
 
