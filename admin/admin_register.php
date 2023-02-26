@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
        if($pass != $cpass){
           $message[] = 'Confirm passowrd not matched!';
        }else{
-          $insert_admin = $conn->prepare("INSERT INTO `user`(name, email, password, user_type ) VALUES(?,?,?,?)");
+          $insert_admin = $conn->prepare("INSERT INTO `users`(name, email, password, user_type ) VALUES(?,?,?,?)");
           $insert_admin->execute([$name, $email, $cpass, $user_type]);
           $message[] = 'Registered Successfully !';
 
@@ -80,7 +80,7 @@ if(isset($_POST['submit'])){
 
    <form action="" method="POST">
       
-      <h3>Register New</h3>
+      <h3>Register Car Rental Agency</h3>
 
       <input type="text" name="name" maxlength="20" required placeholder="enter your username" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="email" name="email" required placeholder="enter your email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">

@@ -363,18 +363,6 @@ section {
   background-color: var(--light-bg);
 }
 
-.post-editor form textarea {
-  height: 40rem;
-  resize: none;
-}
-
-.post-editor form .image {
-  width: 100%;
-  height: 20rem;
-  object-fit: contain;
-  margin: 1rem 0;
-}
-
 .show-posts .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 33rem);

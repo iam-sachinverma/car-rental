@@ -1,5 +1,7 @@
 <?php 
 
+@include 'config/connect.php';
+
 session_start();
 
 if(isset($_SESSION['user_id'])){
@@ -31,6 +33,11 @@ if(isset($_SESSION['user_id'])){
 
    <?php include 'components/header.php'; ?>
    
+   <section class="home-grid">
+      <div class="box-container">
+         <div class="box"></div>
+      </div>
+   </section>
   
    <?php include 'components/footer.php'; ?>
 
