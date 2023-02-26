@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
     $row = $select_user->fetch(PDO::FETCH_ASSOC);
     
     if($select_user->rowCount() > 0){
-       $message[] = 'email already exists!';
+       $message[] = 'Email address already exists!';
     }else{
        if($pass != $cpass){
           $message[] = 'Confirm passowrd not matched!';
@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
           $row = $select_user->fetch(PDO::FETCH_ASSOC);
           if($select_user->rowCount() > 0){
             $_SESSION['user_id'] = $row['id'];
-            header('location:dashboard.php');
+            header('location:../dashboard.php');
           }
        }
     }
@@ -48,6 +48,7 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Admin Register</title>
 
     <!-- font awesome cdn link  -->
@@ -57,18 +58,34 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
-<body>
+<body style="padding-left: 0 !important;">
+
+<?php
+   if(isset($message)){
+      foreach($message as $message){
+         echo '
+         <div class="message">
+            <span>'.$message.'</span>
+            <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+         </div>
+         ';
+      }
+   }
+?>
 
 <section class="form-container">
 
    <form action="" method="POST">
+      
       <h3>Register New</h3>
+
       <input type="text" name="name" maxlength="20" required placeholder="enter your username" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="email" name="email" required placeholder="enter your email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="password" name="pass" maxlength="20" required placeholder="enter your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="password" name="cpass" maxlength="20" required placeholder="confirm your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="hidden" name="user_type" class="box" value="admin" >
       <input type="submit" value="register now" name="submit" class="btn">
+
    </form>
 
 </section>
