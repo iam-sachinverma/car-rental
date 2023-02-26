@@ -96,9 +96,15 @@ if(isset($_POST['booking'])){
                <p>Start Date:</p>
                <input type="date" id="start-date" class="box" name="start_date">
              </div>
+             
 
              <div class="flex-btn">
-              <input type="submit" value="Booking Vehicle" name="booking" class="btn">
+              <!-- <input type="submit" value="Booking Vehicle" name="booking" class="btn"> -->
+
+               <input value="Booking Vehicle" 
+                <?php if($fetch_profile['user_type'] == 'admin') {  ?> onclick="return confirm('Logged as an Car Agency');" <?php  } ?>
+                type="submit" name="booking" class="btn"
+               >
              </div>
             
             <?php 
@@ -116,7 +122,7 @@ if(isset($_POST['booking'])){
          <?php
                }
             }else{
-               echo '<p class="empty">no cards added yet! <a href="/admin/add_vehicle.php" class="btn" style="margin-top:1.5rem;">add vehicle</a></p>';
+               echo '<p class="empty">no cars added yet!</p>';
             }
          ?>
 

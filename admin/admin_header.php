@@ -22,11 +22,6 @@
       </a>
    </nav>
 
-   <div class="flex-btn">
-      <a href="admin_login.php" class="option-btn">login</a>
-      <a href="admin_register.php" class="option-btn">register</a>
-   </div>
-
 </header>
 
 <div id="menu-btn" class="fas fa-bars"></div>
