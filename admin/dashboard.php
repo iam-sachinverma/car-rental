@@ -1,7 +1,15 @@
 <?php 
 
-@include '../config/connect.php'
+@include '../config/connect.php';
 
+// session_start();
+
+// $user_id = $_SESSION['user_id'];
+
+// if(!isset($user_id)){
+//   header('location:admin_login.php');
+// }
+ 
 ?>
 
 <!DOCTYPE html>
