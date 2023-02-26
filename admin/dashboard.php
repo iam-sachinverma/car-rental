@@ -37,8 +37,50 @@ if(!isset($admin_id)){
     <h1 class="heading">Dashboard</h1>
 
     <div class="box-container">
- 
-      
+
+      <div class="box">
+         <?php
+            $select_vehicles = $conn->prepare("SELECT * FROM `vehicles`");
+            $select_vehicles->execute();
+            $numbers_of_vehicles = $select_vehicles->rowCount();
+         ?>
+         <h3><?= $numbers_of_vehicles; ?></h3>
+         <p>Total Vehicles</p>
+         <a href="view_.php" class="btn">add vehicle</a>
+      </div>
+        
+      <div class="box">
+         <?php
+            $select_booked_vehicles = $conn->prepare("SELECT * FROM `booked_vehicles`");
+            $select_booked_vehicles->execute();
+            $numbers_of_booked_vehicles = $select_booked_vehicles->rowCount();
+         ?>
+         <h3><?= $numbers_of_booked_vehicles; ?></h3>
+         <p>All Booking</p>
+         <a href="view_.php" class="btn">see booking</a>
+      </div>
+
+      <div class="box">
+         <?php
+            $select_customers = $conn->prepare("SELECT * FROM `users` WHERE user_type = ?");
+            $select_customers->execute(['customer']);
+            $numbers_of_customers = $select_customers->rowCount();
+         ?>
+         <h3><?= $numbers_of_customers; ?></h3>
+         <p>Total Customers</p>
+         <a href="view_posts.php" class="btn">all customers</a>
+      </div>
+
+      <div class="box">
+         <?php
+            $select_admins = $conn->prepare("SELECT * FROM `users` WHERE user_type = ?");
+            $select_admins->execute(['admin']);
+            $numbers_of_admins = $select_admins->rowCount();
+         ?>
+         <h3><?= $numbers_of_admins; ?></h3>
+         <p>Total Admins</p>
+         <a href="view_posts.php" class="btn">all admins</a>
+      </div>
 
 
     </div>
