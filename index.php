@@ -10,6 +10,21 @@ if(isset($_SESSION['user_id'])){
    $user_id = '';
 };
 
+if(isset($_POST['booking'])){
+
+   $vehicle_id = $_POST['vehicle_id'];
+   $vehicle_id = filter_var($vehicle_id, FILTER_SANITIZE_STRING);
+   $days = $_POST['days'];
+   $days = filter_var($days, FILTER_SANITIZE_STRING);
+   $start_date = $_POST['start_date'];
+   $start_date = filter_var($start_date, FILTER_SANITIZE_STRING);
+    
+   $insert_vehicle = $conn->prepare("INSERT INTO `booked_vehicles`(vehicle_id, days, start_date) VALUES(?,?,?)");
+   $insert_vehicle->execute([$vehicle_id, $days, $start_date]);
+   $message[] = 'vehicle booked!';
+
+}
+
 ?>
 
 
@@ -50,13 +65,13 @@ if(isset($_SESSION['user_id'])){
          ?>
          <form method="post" class="box">
             <input type="hidden" name="vehicle_id" value="<?= $vehicle_id; ?>">
-   
+
             <div class="title"><?= $fetch_vehicles['vehicle_model']; ?></div>
             <div class="posts-content"><?= $fetch_vehicles['vehicle_number']; ?></div>
             <div class="icons">
                <div class="seating">Seating: <?= $fetch_vehicles['seating_capacity']; ?></div>
                <br>
-               <div class="prices">Rent per day: &nbsp; <span>₹ <?= $fetch_vehicles['rent']; ?></span></div>
+               <div class="prices">Rent per day: &nbsp; <span>₹ <?= $fetch_vehicles['rent']; ?> </span></div>
             </div>
 
             <br>
@@ -66,7 +81,6 @@ if(isset($_SESSION['user_id'])){
                $select_profile->execute([$user_id]);
                if($select_profile->rowCount() > 0){
                   $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
-                  
             ?>
 
              <div class="options">
@@ -82,18 +96,22 @@ if(isset($_SESSION['user_id'])){
                <p>Start Date:</p>
                <input type="date" id="start-date" class="box" name="start_date">
              </div>
+
+             <div class="flex-btn">
+              <input type="submit" value="Booking Vehicle" name="booking" class="btn">
+             </div>
             
-            <?php
-            }else{
+            <?php 
+            }else{ 
             ?>
-               <div></div>
+               <div class="flex-btn">
+                 <a href="login.php" class="btn">Book Vehicle</a>  
+               </div>
             <?php
             }
             ?>
             <br>
-            
-            <a href="read_post.php?post_id=<?= $vehicle_id; ?>" class="btn">Book Car</a>
-            
+      
          </form>
          <?php
                }

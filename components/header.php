@@ -11,8 +11,6 @@
                $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
          ?>
          
-         <p class="name"><?= $fetch_profile['name']; ?></p>
-
          <div class="class="flex-btn"> 
             <a href="components/logout.php" onclick="return confirm('logout from this website?');" class="delete-btn">Logout</a>
          </div>
