@@ -2,6 +2,8 @@
 
 @include '../../config/connect.php';
 
+session_start();
+
 if(isset($_POST['submit'])){
 
    $email = $_POST['email'];

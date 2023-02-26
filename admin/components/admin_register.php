@@ -2,6 +2,8 @@
 
 @include '../../config/connect.php';
 
+session_start();
+
 if(isset($_POST['submit'])){
 
     $name = $_POST['name'];
@@ -28,11 +30,13 @@ if(isset($_POST['submit'])){
           $insert_admin = $conn->prepare("INSERT INTO `user`(name, email, password, user_type ) VALUES(?,?,?,?)");
           $insert_admin->execute([$name, $email, $cpass, $user_type]);
           $message[] = 'Registered Successfully !';
+
           $select_user = $conn->prepare("SELECT * FROM `user` WHERE email = ? AND password = ?");
           $select_user->execute([$email, $pass]);
           $row = $select_user->fetch(PDO::FETCH_ASSOC);
+
           if($select_user->rowCount() > 0){
-            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['admin_id'] = $row['id'];
             header('location:../dashboard.php');
           }
        }

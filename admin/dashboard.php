@@ -2,13 +2,13 @@
 
 @include '../config/connect.php';
 
-// session_start();
+session_start();
 
-// $user_id = $_SESSION['user_id'];
+$admin_id = $_SESSION['admin_id'];
 
-// if(!isset($user_id)){
-//   header('location:admin_login.php');
-// }
+if(!isset($admin_id)){
+  header('location:components/admin_login.php');
+}
  
 ?>
 
@@ -33,6 +33,8 @@
 <body>
 
    <?php @include 'components/admin_header.php';  ?>
+
+   
     
 
    <!-- Bootstrap Bundle with Popper -->
